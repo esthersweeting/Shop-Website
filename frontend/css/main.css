@@ -4,10 +4,37 @@ body {
   margin-right: 5%;
 }
 
+.green-background {
+    background-color: #04342C
+}
+
 p{
     font-family: 'Inter', 'Manrope', sans-serif;
 }
 a{
+    font-family: 'Inter', 'Manrope', sans-serif;
+}
+
+button{
+    font-family: 'Inter', 'Manrope', sans-serif;
+}
+
+h1{
+    font-family: 'Inter', 'Manrope', sans-serif;
+}
+h2{
+    font-family: 'Inter', 'Manrope', sans-serif;
+}
+h3{
+    font-family: 'Inter', 'Manrope', sans-serif;
+}
+h4{
+    font-family: 'Inter', 'Manrope', sans-serif;
+}
+h5{
+    font-family: 'Inter', 'Manrope', sans-serif;
+}
+h6{
     font-family: 'Inter', 'Manrope', sans-serif;
 }
 
@@ -136,3 +163,61 @@ a{
     margin-top: 0;
     margin-bottom: 3%;
 }
+
+.i-box{
+    display: inline-block;
+    width: 40%;
+    background-color: #0F6E56;
+    box-sizing: border-box;
+    margin-left : 5%;
+    margin-right: 2.5%;
+    border-radius: 5%
+    
+
+}
+
+.i-title{
+    color: #E1F5EE;
+    text-align: center;
+}
+
+.i-tagline{
+    color: #9FE1CB;
+    text-align: center;
+}
+
+.i-icon{
+    display: block;
+    margin : 10% auto 0 auto;
+}
+
+.i-subtitle{
+     color: #E1F5EE;
+    text-align: center;
+}
+
+.i-box-des{
+    color: #9FE1CB;
+    text-align: center;
+}
+
+.i-box button {
+    display: block;
+    margin : 5% auto;
+    width: 80%;
+    border-radius: 10px ;
+    height: 50px ;
+    border : none ;
+}
+
+.i-enter-shop{
+    background-color: #9FE1CB;
+    color : #04342C;
+}
+
+.i-view-profile{
+    background-color: #D85A30;
+    color : #FFFFFF;
+}
+
+
