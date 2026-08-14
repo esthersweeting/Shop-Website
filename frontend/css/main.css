@@ -220,4 +220,45 @@ h6{
     color : #FFFFFF;
 }
 
+.sh-title{
+    color: #085041
+}
+.sh-tagline{
+    color: #5F5E5A;
+}
 
+.sh-product-type{
+    height: 30px;
+    border-radius: 15px;
+    color: #5F5E5A;
+    border: 1px solid #5F5E5A;
+    background-color: #FFFFFF;
+    margin-right: 1%;
+    appearance :none;
+    box-shadow: none;
+    margin-bottom: 2%
+}
+
+.sh-product{
+    background-color: #FFFFFF ;
+    width: 20% ;
+    border-radius: 10% ;
+    display: inline-block ;
+    border: none;
+    border: red;
+    box-sizing: border-box ;
+    margin-right: 4.7%;
+    height: 200px;
+    margin-bottom: 5%;
+}
+
+
+.sh-product img{
+    object-fit: cover;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 80%;
+    border-radius: 10%;
+    height: auto;
+    
+}
