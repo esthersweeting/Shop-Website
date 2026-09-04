@@ -649,10 +649,10 @@ header {
 .sh-product p {
   margin: 0;
   font-size: 12px;
+  font-weight: 600;
 }
  
 .sh-product p:first-of-type {
-  font-weight: 600;
   color: var(--charcoal);
   margin-bottom: 4px;
 }
