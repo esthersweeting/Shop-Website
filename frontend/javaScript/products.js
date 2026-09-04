@@ -55,7 +55,8 @@ export const nameMap = new Map ();
 products.forEach((product) => {
     idMap.set(product.id,product);
     nameMap.set(product.name,product);
-})
+});
+
 
 
 

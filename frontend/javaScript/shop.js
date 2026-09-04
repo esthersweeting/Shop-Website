@@ -1,6 +1,7 @@
 
  
 import { products} from "./products.js";
+import { formatPrice} from "./functions.js";
 
 
  function createProductBox (product){
@@ -23,7 +24,7 @@ import { products} from "./products.js";
     title.textContent = product.name;
 
     const price = document.createElement("p");
-    price.textContent = "£"+product.price[0].toFixed(2);
+    price.textContent = formatPrice(product.price[0]);
 
 
     btn.appendChild(img);
