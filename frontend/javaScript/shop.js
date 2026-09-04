@@ -5,14 +5,12 @@ import { formatPrice} from "./functions.js";
 
 
  function createProductBox (product){
-    const pr = product;
     const prodBox = document.getElementById("sh-product-id");
-    const p = document.querySelector(".sh-products");
 
     const btn = document.createElement ("button");
     btn.className = "sh-product";
     btn.onclick = function (){
-    localStorage.setItem("currentProduct",JSON.stringify(product));
+      localStorage.setItem("currentProduct",JSON.stringify(product));
       location.href = "../html/product.html";
     };
     

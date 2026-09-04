@@ -1,4 +1,6 @@
 
+export let sizes = ["100g","250g","500g"];
+
 
 export function Product (id, name, description, prices , stock, type){
     this.id = id;
@@ -40,7 +42,7 @@ export const products = [
     new Product(28, "Treacle Toffee", "Dark, rich toffee made with black treacle.", [2.00, 4.75, 8.50], [27, 16, 8], "Fudge & Toffee")
 ];
 
-localStorage.setItem("currentProduct", JSON.stringify(products [0])) ;
+
 
 
 

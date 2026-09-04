@@ -1,4 +1,5 @@
 import {formatPrice} from "./functions.js";
+import {sizes} from "./products.js";
 let currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
 
 const type = document.getElementById("p-link-type-id");
@@ -16,17 +17,21 @@ price.textContent = formatPrice( currentProduct.price[0]);
 const description = document.querySelector(".p-description");
 description.textContent = currentProduct.description;
 
-const g100 = document.getElementById("g-100");
-g100.addEventListener("click",() => {
-    price.textContent=formatPrice( currentProduct.price[0]);
-});
+const sizeButtons= document.getElementById("p-size-buttons-id");
 
-const g250 = document.getElementById("g-250");
-g250.addEventListener("click",() => {
-    price.textContent=formatPrice( currentProduct.price[1]);
-});
-const g500 = document.getElementById("g-500");
-g500.addEventListener("click",() => {
-    price.textContent=formatPrice( currentProduct.price[2]);
-});
+function setupSizeButton (size,index){
+    const btn = document.createElement ("button");
+    btn.className = "p-size-button";
+    btn.textContent=size;
+    btn.id = "g-" + size;
+    btn.addEventListener("click",() => {
+        price.textContent=formatPrice( currentProduct.price[index]);
+    });
+    sizeButtons.appendChild(btn);
+    
+}
+
+
+sizes.forEach(setupSizeButton);
+
 
