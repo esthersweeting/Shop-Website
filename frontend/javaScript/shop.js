@@ -1,11 +1,48 @@
 
  
-import { products} from "./products.js";
+import { products, productTypes} from "./products.js";
 import { formatPrice} from "./functions.js";
 
+let everythingType = "All";
+let lastType= everythingType;
+
+const productTypeButtons = document.getElementById("sh-type-buttons-id");
+const prodBox = document.getElementById("sh-product-id");
+
+function addTypeButton (type){
+  const button = document.createElement("button");
+  button.className = "sh-product-type";
+  button.textContent = type;
+  button.onclick = function (){
+    console.log(lastType+type)
+      if (type==lastType){
+        //Do nothing, just leave the products the same as before
+        console.log(1);
+      }
+      else if (type == everythingType ){
+        products.filter(product => product.type!=lastType).forEach(createProductBox);
+        lastType=type;
+        console.log(2);
+      } else {
+        prodBox.replaceChildren();
+        products.filter(product => product.type==type).forEach(createProductBox);
+        lastType=type;
+        console.log(3);
+
+      }
+  };
+  productTypeButtons.appendChild(button);
+}
+console.log(productTypeButtons);
+addTypeButton (everythingType);
+productTypes.forEach(addTypeButton);
+
+
+
+//<button class="sh-product-type">All</button>
+//"sh-type-buttons-id"
 
  function createProductBox (product){
-    const prodBox = document.getElementById("sh-product-id");
 
     const btn = document.createElement ("button");
     btn.className = "sh-product";
@@ -30,6 +67,12 @@ import { formatPrice} from "./functions.js";
     btn.appendChild(price);
     prodBox.appendChild(btn);
     
+ }
+
+ function createIfType (product,type){
+    if (product.type == type){
+      createProductBox(product);
+    }
  }
 
 products.forEach(createProductBox);
