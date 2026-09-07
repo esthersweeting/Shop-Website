@@ -5,6 +5,14 @@ let currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
 
 const type = document.getElementById("p-link-type-id");
 type.textContent = currentProduct.type;
+type.onclick = function (){
+    localStorage.setItem("type",JSON.stringify(currentProduct.type));
+};
+
+const shopLink = document.getElementById("p-link-shop-id");
+shopLink.onclick = function (){
+    localStorage.setItem("type",JSON.stringify(null));
+};
 
 const pageName = document.getElementById("p-link-page-id");
 pageName.textContent = currentProduct.name;
@@ -83,10 +91,6 @@ for (let i = 0; i<4; i++){
     createExtraProduct(products[i]);
 }
 
-//<div class="p-extra-product">
-//           <img src="../images/temp.jpg">
-//           <p> Rhubarb bonbons</p>
-//         </div>
 
 
 

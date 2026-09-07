@@ -9,38 +9,33 @@ let lastType= everythingType;
 const productTypeButtons = document.getElementById("sh-type-buttons-id");
 const prodBox = document.getElementById("sh-product-id");
 
-function addTypeButton (type){
-  const button = document.createElement("button");
-  button.className = "sh-product-type";
-  button.textContent = type;
-  button.onclick = function (){
-    console.log(lastType+type)
+function setupWithType (type){
       if (type==lastType){
         //Do nothing, just leave the products the same as before
-        console.log(1);
       }
       else if (type == everythingType ){
         products.filter(product => product.type!=lastType).forEach(createProductBox);
         lastType=type;
-        console.log(2);
       } else {
         prodBox.replaceChildren();
         products.filter(product => product.type==type).forEach(createProductBox);
         lastType=type;
-        console.log(3);
 
       }
-  };
+  }
+
+function addTypeButton (type){
+  const button = document.createElement("button");
+  button.className = "sh-product-type";
+  button.textContent = type;
+  button.onclick =() => setupWithType(type);
   productTypeButtons.appendChild(button);
 }
-console.log(productTypeButtons);
 addTypeButton (everythingType);
 productTypes.forEach(addTypeButton);
 
 
 
-//<button class="sh-product-type">All</button>
-//"sh-type-buttons-id"
 
  function createProductBox (product){
 
@@ -68,14 +63,25 @@ productTypes.forEach(addTypeButton);
     prodBox.appendChild(btn);
     
  }
+ 
+let jsonType = localStorage.getItem("type");
+let typeFromProduct = null;
+if (jsonType != null){
+  typeFromProduct=JSON.parse(jsonType);
+}
+addEventListener("pageshow", () => { 
+  if (typeFromProduct === null ){
+    products.forEach(createProductBox);
+    console.log("null")
+  }
+  else{
+    setupWithType (typeFromProduct);
+    localStorage.setItem("type",JSON.stringify(null));
+    console.log("not null");
+  }
 
- function createIfType (product,type){
-    if (product.type == type){
-      createProductBox(product);
-    }
- }
+})
 
-products.forEach(createProductBox);
 
 
  
