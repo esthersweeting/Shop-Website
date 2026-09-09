@@ -1,5 +1,6 @@
 import {formatPrice} from "./functions.js";
 import {sizes, products} from "./products.js";
+import { Item } from "./basket.js";
 let clickedSizeIndex= 0;
 let currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
 
@@ -49,13 +50,12 @@ const basketButton = document.getElementById("p-add-id");
 function addToBasket(){
     const quantity = document.getElementById("p-quantity-id").value;
     const basket = localStorage.getItem("basket");
-    const basketItem = [currentProduct,clickedSizeIndex,quantity];
+    const basketItem = new Item(currentProduct,clickedSizeIndex,quantity);
     
     if (basket == null){
         localStorage.setItem("basket",JSON.stringify([basketItem]));
     }
     else{
-        console.log(basket);
         const newBasket = JSON.parse(basket);
         newBasket.push(basketItem);
         localStorage.setItem("basket",JSON.stringify(newBasket));
