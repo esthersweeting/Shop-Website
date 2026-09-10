@@ -33,3 +33,8 @@ if (json != null){
     
 }
 
+const checkoutButton= document.getElementById("b-checkout-btn");
+checkoutButton.onclick = function (){
+    location.href = "../html/checkout.html";
+};
+

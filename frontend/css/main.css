@@ -252,6 +252,12 @@ header {
  
 .b-total-text { width: 65%; }
 .b-total-cost { width: 30%; text-align: right; }
+
+.b-pay-note {
+  font-size: 11px;
+  color: var(--coral-dark);
+  margin: 6px 0 14px;
+}
  
 .b-checkout-box button {
   display: block;
@@ -666,5 +672,205 @@ header {
 .sh-product p:last-of-type {
   color: var(--coral-dark);
 }
+
+
+/* ==========================================================================
+   Checkout page
+   Reuses lots from the basket page:
+    .b-checkout-box, .b-costs, .b-total-cost, .b-total-text, .b-cost-type, .b-cost
+   ========================================================================== */
+.c-flex{
+  display: flex;
+  gap: 16px;
+}
+
+.c-details{
+  flex:2;
+}
+.c-section {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+ 
+.c-section h2 {
+  font-size: 14px;
+  color: var(--charcoal);
+  margin-bottom: 14px;
+}
+ 
+.c-section h3 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin: 14px 0 6px;
+}
+ 
+.c-section h3:first-of-type {
+  margin-top: 0;
+}
+ 
+.c-info-box {
+  padding: 9px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: 'Manrope', 'Inter', sans-serif;
+  width: 47%;
+  margin-bottom: 10px;
+}
+ 
+.c-info-box:nth-of-type(odd) {
+  margin-right: 4%;
+}
+ 
+#c-shop-address {
+  font-size: 11px;
+  color: var(--grey);
+  margin: 0 0 4px;
+}
+ 
+#c-collection-date {
+  padding: 9px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: 'Manrope', 'Inter', sans-serif;
+  color: var(--charcoal);
+}
+ 
+#c-times {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+ 
+.c-slot {
+  border: 1px solid var(--border-light);
+  background-color: var(--white);
+  color: var(--grey);
+  font-size: 12px;
+  padding: 7px 14px;
+  border-radius: 8px;
+}
+ 
+.c-slot:hover {
+  border-color: var(--teal-deep);
+  color: var(--teal-deep);
+}
+ 
+.c-slot.selected {
+  border-color: var(--teal-deep);
+  background-color: var(--mint-tint);
+  color: var(--teal-deep);
+}
+/* ==========================================================================
+   Thank you page
+   Note it also reuses .b-costs, .b-cost-type ,.b-cost , .b-total-text , .b-total-cost 
+   ========================================================================== */
+ 
+.t-page {
+  display: block;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 40px 0 60px;
+  text-align: center;
+}
+ 
+#t-name {
+  color: var(--teal-deep);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+ 
+#t-tick {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}
+ 
+#t-thank {
+  font-size: 20px;
+  color: var(--teal-darkest);
+  margin-bottom: 6px;
+}
+ 
+#t-tagline {
+  font-size: 13px;
+  color: var(--grey);
+  margin-bottom: 24px;
+}
+ 
+.t-order-box {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+ 
+.t-order-num {
+  font-size: 12px;
+  color: var(--grey);
+  margin-bottom: 12px;
+}
+ 
+.t-order-box .b-cost-type,
+.t-order-box .b-cost,
+.t-order-box .b-total-text,
+.t-order-box .b-total-cost {
+  color: var(--charcoal);
+}
+ 
+.t-order-box .b-pay-note {
+  margin-top: 10px;
+}
+ 
+.t-info-box {
+  background-color: var(--coral-tint);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 14px;
+}
+ 
+.t-method {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--coral-dark);
+  margin-bottom: 3px;
+}
+ 
+.t-slot {
+  font-size: 12px;
+  color: var(--coral-darkest);
+}
+ 
+.t-location {
+  font-size: 11px;
+  color: var(--coral-dark);
+  margin-top: 2px;
+}
+ 
+.t-email-confirm {
+  font-size: 11px;
+  color: var(--grey);
+  margin-bottom: 20px;
+}
+ 
+.t-back-button {
+  background-color: var(--teal-deep);
+  color: var(--mint-tint);
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+}
+ 
+
+
+
  
 
