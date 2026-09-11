@@ -12,6 +12,19 @@ export function Product (id, name, description, prices , stock, type){
     this.type = type;
 }
 
+export function Item (product,size,quantity){
+    this.product = product;
+    this.size= size;
+    this.quantity = quantity;
+
+    this.key = "p"+ this.product.id + "s"+ this.size;
+}
+
+// export function BasketValue(quantity,item){
+//     this.quantity = quantity;
+//     this.item= item;
+// }
+
 export const products = [
     new Product(1, "Cola Cubes", "Hard-boiled sweets with a nostalgic cola flavour.", [1.70, 3.75, 7.00], [40, 25, 12], "Boiled Sweets"),
     new Product(2, "Blackcurrant & Liquorice", "Fruity blackcurrant combined with traditional liquorice.", [1.70, 4.00, 7.50], [35, 20, 10], "Boiled Sweets"),

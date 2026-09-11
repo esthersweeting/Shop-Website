@@ -1,20 +1,12 @@
 import { formatPrice } from "./functions.js";
-export function Item (product,size,quantity){
-    this.product = product;
-    this.size= size;
-    this.quantity = quantity;
+import { sizes, Item} from "./products.js";
 
-    this.key = "p"+ this.product.id + "s"+ this.size;
-}
+const totalP= document.getElementById("b-total-cost");
+let total = 0;
 
-export function BasketValue(quantity,item){
-    this.quantity = quantity;
-    this.item= item;
-}
-
-function createBasketProd(basketVal){
-    const outer = document.getElementById("b-products")
-
+const productsDiv = document.getElementById("b-products")
+function createBasketProd(basketItem){
+    
     const prodDiv = document.createElement("div");
     prodDiv.className="b-product";
 
@@ -27,22 +19,41 @@ function createBasketProd(basketVal){
 
     const prodName = document.createElement("p");
     prodName.className="b-product-name";
-    prodName.textContent= basketVal.quantity +"x "+ basketVal.item.product.name;
+    
 
     const unitPrice = document.createElement("p");
     unitPrice.className = "b-unit-price";
-    const pricePerUnit = basketVal.item.product.price[basketVal.item.size];
-    unitPrice.textContent= formatPrice(pricePerUnit);
+    const pricePerUnit = basketItem.product.price[basketItem.size];
+    
+
+    const totalPrice = document.createElement("p");
+    totalPrice.className = "b-price";
+    
+
+    function setText () {
+        prodName.textContent= basketItem.quantity +"x "+ basketItem.product.name + " "+  sizes[basketItem.size];
+        unitPrice.textContent= formatPrice(pricePerUnit);
+        totalPrice.textContent=formatPrice(basketItem.quantity*pricePerUnit);
+        totalP.textContent=formatPrice(total);
+    }
 
     const qty = document.createElement("input");
     qty.type=Number;
     qty.className="b-quantity";
-    qty.value=basketVal.quantity;
+    qty.value=basketItem.quantity;
+    qty.addEventListener("change",()=>{
+        total=total+(qty.value-basketItem.quantity)*pricePerUnit;
+        basketItem.quantity=qty.value
+        setText();
+        console.log("called");
 
-    const totalPrice = document.createElement("p");
-    totalPrice.className = "b-price";
-    totalPrice.textContent=formatPrice(basketVal.quantity*pricePerUnit);
+    });
 
+    total=total+pricePerUnit*basketItem.quantity;
+
+    setText();
+
+    
     prodInfo.appendChild(prodName);
     prodInfo.appendChild(unitPrice);
 
@@ -52,51 +63,48 @@ function createBasketProd(basketVal){
     prodDiv.appendChild(totalPrice);
 
 
-    outer.appendChild(prodDiv);
+    productsDiv.appendChild(prodDiv);
 
 
 
 }
-
+const hashBasket = new Map();
 const json = localStorage.getItem("basket");
 let basket = null;
 if (json != null){
     basket = JSON.parse(json);
-    const hashBasket = new Map();
-
+    
+    
     basket.forEach(element => {
-    if (hashBasket.get(element.key) ==null){
-        hashBasket.set(element.key,new BasketValue(parseInt(element.quantity),element));
-    }
-    else{
+        if (hashBasket.get(element.key) ==null){
+            hashBasket.set(element.key,element);
+        }
+        else{
         const num = parseInt(element.quantity)+parseInt(hashBasket.get(element.key).quantity);
-        const basketValue = new BasketValue (num,element);
+        element.quantity=num;
         
-        hashBasket.set(element.key,basketValue);
-    }
+        hashBasket.set(element);
+        }
     });
-
-    
-    // <div class="b-product">
-    //         <div class="b-product-info">
-    //           <p class="b-product-name">Salted caramel fudge</p>
-    //           <p class="b-unit-price">£3.50 each</p>
-    //         </div>
-    //         <input class="b-quantity" type="number" value="1">
-    //         <p class="b-price">£7.00</p>
-    //       </div>
-
-    hashBasket.forEach(createBasketProd);
+    if (productsDiv!= null){
+        hashBasket.forEach(createBasketProd);
+    }
     
 }
 
-addEventListener("pageShow", setup);
 
-function setup(){
-    const checkoutButton= document.getElementById("b-checkout-btn");
-    checkoutButton.onclick = function (){
-        location.href = "../html/checkout.html";
-    };
+const checkoutButton= document.getElementById("b-checkout-btn");
+if (checkoutButton!=null){
+    let basketArray = [];
+    if (hashBasket.size >0){
+        hashBasket.forEach((basketItem) =>{
+            const tempProduct = basketItem.item.product;
+            tempProduct.quantity = basketItem.quantity;
+            basketArray.append(tempProduct);
+        });
+        localStorage.setItem("basket",JSON.stringify(basketArray));
+    }
+     checkoutButton.onclick = function (){location.href = "../html/checkout.html";} 
 }
-
+   
 

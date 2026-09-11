@@ -1,6 +1,6 @@
 import {formatPrice} from "./functions.js";
-import {sizes, products} from "./products.js";
-import { Item } from "./basket.js";
+import {sizes, products,Item} from "./products.js";
+
 let clickedSizeIndex= 0;
 let currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
 
