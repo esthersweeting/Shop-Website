@@ -1,5 +1,6 @@
 
 export let sizes = ["100g","250g","500g"];
+export let timeSlots = ["11:00 – 1:00","1:00 – 3:00","3:00 – 5:00"];
 export let productTypes = ["Boiled Sweets", "Chewy Sweets","Fudge & Toffee","Other"]
 
 
@@ -20,10 +21,7 @@ export function Item (product,size,quantity){
     this.key = "p"+ this.product.id + "s"+ this.size;
 }
 
-// export function BasketValue(quantity,item){
-//     this.quantity = quantity;
-//     this.item= item;
-// }
+
 
 export const products = [
     new Product(1, "Cola Cubes", "Hard-boiled sweets with a nostalgic cola flavour.", [1.70, 3.75, 7.00], [40, 25, 12], "Boiled Sweets"),

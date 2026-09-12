@@ -1,4 +1,4 @@
-import { formatPrice } from "./functions.js";
+import { formatPrice,getPricePerUnit,getProductText,getTotalPrice } from "./functions.js";
 import { sizes, Item} from "./products.js";
 
 const totalP= document.getElementById("b-total-cost");
@@ -23,17 +23,16 @@ function createBasketProd(basketItem){
 
     const unitPrice = document.createElement("p");
     unitPrice.className = "b-unit-price";
-    const pricePerUnit = basketItem.product.price[basketItem.size];
+    const pricePerUnit = getPricePerUnit(basketItem);
     
-
     const totalPrice = document.createElement("p");
     totalPrice.className = "b-price";
     
 
     function setText () {
-        prodName.textContent= basketItem.quantity +"x "+ basketItem.product.name + " "+  sizes[basketItem.size];
+        prodName.textContent= getProductText(basketItem);
         unitPrice.textContent= formatPrice(pricePerUnit);
-        totalPrice.textContent=formatPrice(basketItem.quantity*pricePerUnit);
+        totalPrice.textContent=formatPrice(getTotalPrice(basketItem));
         totalP.textContent=formatPrice(total);
     }
 
@@ -83,7 +82,7 @@ if (json != null){
         const num = parseInt(element.quantity)+parseInt(hashBasket.get(element.key).quantity);
         element.quantity=num;
         
-        hashBasket.set(element);
+        hashBasket.set(element.key,element);
         }
     });
     if (productsDiv!= null){
@@ -95,14 +94,15 @@ if (json != null){
 
 const checkoutButton= document.getElementById("b-checkout-btn");
 if (checkoutButton!=null){
-    let basketArray = [];
     if (hashBasket.size >0){
+        let basketArray = [];
         hashBasket.forEach((basketItem) =>{
-            const tempProduct = basketItem.item.product;
+            const tempProduct = basketItem;
             tempProduct.quantity = basketItem.quantity;
-            basketArray.append(tempProduct);
+            basketArray.push(tempProduct);
         });
         localStorage.setItem("basket",JSON.stringify(basketArray));
+        localStorage.setItem("total",JSON.stringify(total));
     }
      checkoutButton.onclick = function (){location.href = "../html/checkout.html";} 
 }
