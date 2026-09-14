@@ -1,20 +1,27 @@
 import {formatPrice} from "./functions.js";
 import {sizes, products,Item} from "./products.js";
 
+// Stores the index of the most recently clicked size
+//This aligns with sizes in products.js 
 let clickedSizeIndex= 0;
+
 let currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
 
+//Setup a link to the shop page where when clicked only shows elements of the current type
+//Shop renders the page based of "type" in local storage
 const type = document.getElementById("p-link-type-id");
 type.textContent = currentProduct.type;
 type.onclick = function (){
     localStorage.setItem("type",JSON.stringify(currentProduct.type));
 };
 
+//If the shop link is clicked though all types should be shown
 const shopLink = document.getElementById("p-link-shop-id");
 shopLink.onclick = function (){
     localStorage.setItem("type",JSON.stringify(null));
 };
 
+//Set the text attributes of the page to match the actual product
 const pageName = document.getElementById("p-link-page-id");
 pageName.textContent = currentProduct.name;
 
@@ -27,6 +34,8 @@ price.textContent = formatPrice( currentProduct.price[0]);
 const description = document.querySelector(".p-description");
 description.textContent = currentProduct.description;
 
+
+//Dynamically creating the size buttons based on the sizes in proudcts
 const sizeButtons= document.getElementById("p-size-buttons-id");
 
 function setupSizeButton (size,index){
@@ -45,6 +54,8 @@ function setupSizeButton (size,index){
 
 sizes.forEach(setupSizeButton);
 
+//Setting up the basket button 
+//when clicked it either creates an array of items or pushes the new item to the end of the list
 const basketButton = document.getElementById("p-add-id");
 
 function addToBasket(){
@@ -64,6 +75,7 @@ function addToBasket(){
 }
 basketButton.onclick= addToBasket;
 
+//Setting up the bottom of the page that offers more products
 const moreProducts = document.getElementById("p-extra-products-id");
 
 function createExtraProduct (product){

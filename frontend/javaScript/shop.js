@@ -3,12 +3,17 @@
 import { products, productTypes} from "./products.js";
 import { formatPrice} from "./functions.js";
 
+//Everthing type is the text that will be displayed on the page if you want to see all the proucts
+//lastType is the previously clicked type
 let everythingType = "All";
 let lastType= everythingType;
 
+//This is the container for the type buttons
 const productTypeButtons = document.getElementById("sh-type-buttons-id");
+//This is the container for the products
 const prodBox = document.getElementById("sh-product-id");
 
+//Creates boxes for the appropriate products based on their types
 function setupWithType (type){
       if (type==lastType){
         //Do nothing, just leave the products the same as before
@@ -24,6 +29,7 @@ function setupWithType (type){
       }
   }
 
+//Add buttons for each different type
 function addTypeButton (type){
   const button = document.createElement("button");
   button.className = "sh-product-type";
@@ -36,7 +42,8 @@ productTypes.forEach(addTypeButton);
 
 
 
-
+// Create a box with the product name to display
+//Add an event handler so that when it is clicked it takes you to the product page
  function createProductBox (product){
 
     const btn = document.createElement ("button");
@@ -63,7 +70,11 @@ productTypes.forEach(addTypeButton);
     prodBox.appendChild(btn);
     
  }
- 
+
+
+ //If there is a previously selected type in local storage
+ //Load the appropriate stuff for that type
+ //Otherwise just load all the products
 let jsonType = localStorage.getItem("type");
 let typeFromProduct = null;
 if (jsonType != null){
@@ -72,12 +83,10 @@ if (jsonType != null){
 addEventListener("pageshow", () => { 
   if (typeFromProduct === null ){
     products.forEach(createProductBox);
-    console.log("null")
   }
   else{
     setupWithType (typeFromProduct);
     localStorage.setItem("type",JSON.stringify(null));
-    console.log("not null");
   }
 
 })

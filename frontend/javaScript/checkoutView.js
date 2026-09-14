@@ -1,9 +1,20 @@
 import { timeSlots } from "./products.js"
-import {getProductText, getTotalPrice, formatPrice} from "./functions.js"
+
 
 export const timeButtons = [];
 
+export const checkoutButton = document.getElementById("c-button");
+
+export const fn = document.getElementById("c-first-name");
+export const ln = document.getElementById("c-last-name");
+export const em = document.getElementById("c-email");
+export const ph = document.getElementById("c-phone");
+
+export const inputDate = document.getElementById("c-collection-date");
+
 const timesContainer = document.getElementById("c-times");
+
+//Create a button for each time slot and store it in the timeButtons array
 timeSlots.forEach((slot) => {
    let btn = document.createElement("button");
    btn.className = "c-slot";
@@ -12,43 +23,4 @@ timeSlots.forEach((slot) => {
    timesContainer.appendChild(btn);
 
 });
-const costContainer = document.getElementById("b-costs");
-export function addItemToCheckout (item){
-   console.log("called");
-   //<p class="b-cost-type">Marshmallows</p>
-   //<p class="b-cost">£11.20</p>
-   const cType = document.createElement("p");
-   cType.className="b-cost-type";
-   cType.textContent=getProductText(item);
-
-   const cCost = document.createElement("p");
-   cCost.className="b-cost";
-   cCost.textContent=formatPrice(getTotalPrice(item));
-   
-
-   costContainer.appendChild(cType);
-   costContainer.appendChild(cCost);
-
-}
-
-export function addTotal(total){
-   costContainer.appendChild(document.createElement("hr"));
-   
-   const totText = document.createElement("p");
-   totText.className = "b-total-text";
-   totText.textContent="Total";
-
-   const totCost = document.createElement("p");
-   totCost.className = "b-total-cost";
-   totCost.textContent=formatPrice(total);
-
-   const payNote = document.createElement("p");
-   payNote.className = "b-pay-note";
-   payNote.textContent="click & collect — pay in store on pickup";
-
-   costContainer.appendChild(totText);
-   costContainer.appendChild(totCost);
-   costContainer.appendChild(payNote);
-}
-
  
