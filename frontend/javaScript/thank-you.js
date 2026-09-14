@@ -1,5 +1,5 @@
-import { email } from "./thankYouModel.js";
-import { setEmail, backButton } from "./thankYouView.js";
+import { email, dateString,slotText } from "./thankYouModel.js";
+import { setEmail, backButton, timeSlot } from "./thankYouView.js";
 
 backButton.onclick= function(){
     location.href = "../html/shop.html";
@@ -8,3 +8,5 @@ backButton.onclick= function(){
 
 
 setEmail(email);
+
+timeSlot.textContent = dateString +", " + slotText;
