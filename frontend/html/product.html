@@ -4,13 +4,15 @@
     <link rel="stylesheet" href="../css/main.css">
   </head>
   <body>
+    <div id="header"></div>
+    <script type = "module" src="../javaScript/loadHeader.js"></script>
     <div class="page">
       <div class="p-page">
-        <a class="p-link" href="shop.html">Shop</a>
+        <a class="p-link" id= "p-link-shop-id" href="shop.html">Shop</a>
         <p class="p-link-text">/</p>
-        <a class="p-link" href="shop.html">Fudge</a>
+        <a class="p-link" id= "p-link-type-id" href="shop.html">Fudge</a>
         <p class="p-link-text">/</p>
-        <p class="p-link-page">Salted caramel fudge</p>
+        <p class="p-link-page" id="p-link-page-id">Salted caramel fudge</p>
         <div class="p-product-box">
           <div class="p-images">
             <img class="p-main-img" src="../images/temp.jpg">
@@ -40,37 +42,20 @@
               with a light dusting of salt flakes.
             </p>
             <h2 class="p-weight">Weight</h2>
-            <div class="p-size-buttons">
-              <button class="p-size-button">100g</button>
-              <button class="p-size-button">250g</button>
-              <button class="p-size-button">500g</button>
+            <div class="p-size-buttons" id="p-size-buttons-id">
             </div>
             <div class="p-basket-section">
-              <input class="p-quantity" type="number" value="1">
-              <button class="p-add">Add to basket</button>
+              <input class="p-quantity" id="p-quantity-id" type="number" value="1">
+              <button class="p-add" id="p-add-id">Add to basket</button>
             </div>
           </div>
         </div>
         <h2>You might also like</h2>
-        <div class="p-extra-products">
-          <div class="p-extra-product">
-            <img src="../images/temp.jpg">
-            <p> Rhubarb bonbons</p>
-          </div>
-          <div class="p-extra-product">
-            <img src="../images/temp.jpg">
-            <p>Mint humbugs</p>
-          </div>
-          <div class="p-extra-product">
-            <img src="../images/temp.jpg">
-            <p> Toffee brittle</p>
-          </div>
-          <div class="p-extra-product">
-            <img src="../images/temp.jpg">
-            <p>Sea salt caramels</p>
-          </div>
+        <div class="p-extra-products" id="p-extra-products-id">
+          
         </div>
       </div>
     </div>
   </body>
+  <script type = "module" src="../javaScript/product.js"></script>
 </html>
