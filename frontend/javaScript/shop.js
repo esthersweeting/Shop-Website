@@ -30,11 +30,19 @@ function setupWithType (type){
   }
 
 //Add buttons for each different type
+const typeButtonArray =[]; 
 function addTypeButton (type){
   const button = document.createElement("button");
   button.className = "sh-product-type";
   button.textContent = type;
-  button.onclick =() => setupWithType(type);
+  button.onclick =() => {
+    setupWithType(type);
+    typeButtonArray.forEach(el => {
+      el.className = "sh-product-type";
+    })
+    button.className= "sh-product-type sh-product-type-selected";
+  }
+  typeButtonArray.push(button);
   productTypeButtons.appendChild(button);
 }
 addTypeButton (everythingType);

@@ -126,6 +126,7 @@ header {
 .h-option:hover {
   color: var(--mint-tint);
 }
+
  
 .h-basket {
   display: flex;
@@ -379,6 +380,13 @@ header {
   border-radius: var(--radius-sm);
   font-size: 12px;
 }
+
+.p-size-button-selected {
+  background-color: var(--teal-deep);
+  color: var(--mint-tint);
+  border-color: var(--teal-deep);
+}
+
  
 .p-basket-section {
   display: flex;
@@ -631,7 +639,18 @@ header {
   border-color: var(--teal-deep);
   color: var(--teal-deep);
 }
+
+.sh-product-type-selected {
+  background-color: var(--teal-deep);
+  color: var(--mint-tint);
+  border-color: var(--teal-deep);
+}
  
+
+.sh-product-type-selected:hover {
+  border-color: var(--teal-deep);
+  color: var(--mint-tint);
+}
 .sh-products {
   display: grid ;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -868,6 +887,25 @@ header {
   padding: 10px 20px;
   border-radius: var(--radius-sm);
 }
+
+/* ==========================================================================
+   Pressed-state feedback (:active — fires only while the mouse is down)
+   ========================================================================== */
+ 
+.p-add:active,
+.p-size-button:active,
+.i-enter-shop:active,
+.i-view-profile:active,
+.b-checkout-box button:active,
+.t-back-button:active,
+.sh-product:active,
+.sh-product-type:active,
+.c-slot:active,
+.h-basket:active {
+  filter: brightness(0.92);
+  transform: scale(0.97);
+}
+ 
  
 
 

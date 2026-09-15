@@ -37,6 +37,7 @@ description.textContent = currentProduct.description;
 
 //Dynamically creating the size buttons based on the sizes in proudcts
 const sizeButtons= document.getElementById("p-size-buttons-id");
+const sizeButtonArray = [];
 
 function setupSizeButton (size,index){
     const btn = document.createElement ("button");
@@ -46,7 +47,12 @@ function setupSizeButton (size,index){
     btn.addEventListener("click",() => {
         price.textContent=formatPrice( currentProduct.price[index]);
         clickedSizeIndex = index;
+        sizeButtonArray.forEach(el => {
+            el.className = "p-size-button"
+        })
+        btn.className = "p-size-button p-size-button-selected";
     });
+    sizeButtonArray.push(btn);
     sizeButtons.appendChild(btn);
     
 }
