@@ -86,7 +86,7 @@ if (json != null){
 
 
 window.addEventListener("pagehide", () =>{
-    const checkoutButton= document.getElementById("b-checkout-btn");
+    
     if (checkoutButton!=null){
         if (hashBasket.size >0){
             let basketArray = [];
@@ -98,8 +98,11 @@ window.addEventListener("pagehide", () =>{
             localStorage.setItem("basket",JSON.stringify(basketArray));
             localStorage.setItem("total",JSON.stringify(total));
         }
-        checkoutButton.onclick = function (){location.href = "../html/checkout.html";} 
+        
     }
 });
+
+const checkoutButton= document.getElementById("b-checkout-btn");
+checkoutButton.onclick = function (){location.href = "../html/checkout.html";} 
    
 
