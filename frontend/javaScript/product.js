@@ -1,11 +1,60 @@
 import {formatPrice} from "./functions.js";
-import {sizes, products,Item} from "./products.js";
+import {sizes, products,Item, calcKey} from "./products.js";
+import { hashBasket } from "./mapBasket.js";
 
 // Stores the index of the most recently clicked size
 //This aligns with sizes in products.js 
 let clickedSizeIndex= 0;
 
 let currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
+
+let productStatus = document.getElementById("p-status");
+let pStatusText = document.getElementById("p-status-text");
+
+const quantControl = document.getElementById("p-quantity-id");
+
+//Stores how many have already been ordered of each product
+const orderedArray=[];
+sizes.forEach((size,index)=>{
+    if (hashBasket.get(calcKey(currentProduct,index))!= null){
+        orderedArray.push(hashBasket.get(calcKey(currentProduct,index)).quantity);
+    }
+    else{
+        orderedArray.push(0);
+    }
+    console.log(orderedArray);
+    console.log(hashBasket.get(calcKey(currentProduct,index)));
+    
+});
+
+//Sets the thing to say in stock or out of stock
+function checkStatus(){
+    if (currentProduct.stock[clickedSizeIndex]-orderedArray[clickedSizeIndex]<=0){
+        productStatus.className= "p-status p-status-out-of-stock";
+        pStatusText.textContent = "Out of Stock"
+        quantControl.value=0;
+    }
+    else{
+        productStatus.className= "p-status";
+        pStatusText.textContent = "In Stock"
+        quantControl.value=1;
+    }      
+
+}
+checkStatus();
+
+quantControl.addEventListener('blur', () => {
+  const max = currentProduct.stock[clickedSizeIndex]-orderedArray[clickedSizeIndex]
+  if (parseInt(quantControl.value) > max) {
+    quantControl.value = max;
+  }
+  if (parseInt(quantControl.value) < 0) {
+    quantControl.value = 0;
+  }
+});
+
+
+
 
 //Setup a link to the shop page where when clicked only shows elements of the current type
 //Shop renders the page based of "type" in local storage
@@ -47,6 +96,7 @@ function setupSizeButton (size,index){
     btn.addEventListener("click",() => {
         price.textContent=formatPrice( currentProduct.price[index]);
         clickedSizeIndex = index;
+        checkStatus();
         sizeButtonArray.forEach(el => {
             el.className = "p-size-button"
         })
@@ -65,9 +115,10 @@ sizes.forEach(setupSizeButton);
 const basketButton = document.getElementById("p-add-id");
 
 function addToBasket(){
-    const quantity = document.getElementById("p-quantity-id").value;
+    const quantity = quantControl.value;
     const basket = localStorage.getItem("basket");
     const basketItem = new Item(currentProduct,clickedSizeIndex,quantity);
+    orderedArray[clickedSizeIndex]=orderedArray[clickedSizeIndex]+quantity;
     
     if (basket == null){
         localStorage.setItem("basket",JSON.stringify([basketItem]));
@@ -77,6 +128,7 @@ function addToBasket(){
         newBasket.push(basketItem);
         localStorage.setItem("basket",JSON.stringify(newBasket));
     }
+    checkStatus();
     
 }
 basketButton.onclick= addToBasket;

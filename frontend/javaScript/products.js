@@ -16,15 +16,19 @@ export function Product (id, name, description, prices , stock, type){
 export function Item (product,size,quantity){
     this.product = product;
     this.size= size;
-    this.quantity = quantity;
+    this.quantity = parseInt(quantity);
 
-    this.key = "p"+ this.product.id + "s"+ this.size;
+    this.key = calcKey(product,size);
+}
+
+export function calcKey(product,size){
+    return "p"+ product.id + "s"+ size;
 }
 
 
 
 export const products = [
-    new Product(1, "Cola Cubes", "Hard-boiled sweets with a nostalgic cola flavour.", [1.70, 3.75, 7.00], [40, 25, 12], "Boiled Sweets"),
+    new Product(1, "Cola Cubes", "Hard-boiled sweets with a nostalgic cola flavour.", [1.70, 3.75, 7.00], [0, 25, 12], "Boiled Sweets"),
     new Product(2, "Blackcurrant & Liquorice", "Fruity blackcurrant combined with traditional liquorice.", [1.70, 4.00, 7.50], [35, 20, 10], "Boiled Sweets"),
     new Product(3, "Mint Imperials", "Crisp, refreshing peppermint sweets with a classic sugary shell.", [1.50, 3.50, 6.50], [50, 30, 15], "Boiled Sweets"),
     new Product(4, "Aniseed Balls", "Hard boiled sweets with a distinctive warm aniseed flavour.", [1.50, 3.50, 6.50], [45, 28, 14], "Boiled Sweets"),

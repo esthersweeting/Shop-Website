@@ -1,5 +1,6 @@
 import { formatPrice,getPricePerUnit,getProductText,getTotalPrice } from "./functions.js";
 import { sizes, Item} from "./products.js";
+import {hashBasket, json, basket} from "./mapBasket.js";
 
 const totalP= document.getElementById("b-total-cost");
 let total = 0;
@@ -67,24 +68,8 @@ function createBasketProd(basketItem){
 
 
 }
-const hashBasket = new Map();
-const json = localStorage.getItem("basket");
-let basket = null;
+
 if (json != null){
-    basket = JSON.parse(json);
-    
-    
-    basket.forEach(element => {
-        if (hashBasket.get(element.key) ==null){
-            hashBasket.set(element.key,element);
-        }
-        else{
-        const num = parseInt(element.quantity)+parseInt(hashBasket.get(element.key).quantity);
-        element.quantity=num;
-        
-        hashBasket.set(element.key,element);
-        }
-    });
     if (productsDiv!= null){
         hashBasket.forEach(createBasketProd);
     }

@@ -339,7 +339,13 @@ header {
 .p-status p {
    margin: 0; 
   font-weight: 600;
-  }
+}
+
+.p-status-out-of-stock {
+  background-color: var(--status-out-bg);
+  color: var(--status-out-text);
+}
+
  
 .p-name {
   color: var(--teal-deep);
