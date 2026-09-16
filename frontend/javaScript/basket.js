@@ -42,6 +42,13 @@ function createBasketProd(basketItem){
     qty.className="b-quantity";
     qty.value=basketItem.quantity;
     qty.addEventListener("change",()=>{
+        const max = basketItem.product.stock[basketItem.size];
+        if (parseInt(qty.value) > max) {
+            qty.value = max;
+        }
+        if (parseInt(qty.value) < 0) {
+            qty.value = 0;
+        }
         total=total+(qty.value-basketItem.quantity)*pricePerUnit;
         basketItem.quantity=qty.value
         setText();
@@ -77,19 +84,22 @@ if (json != null){
 }
 
 
-const checkoutButton= document.getElementById("b-checkout-btn");
-if (checkoutButton!=null){
-    if (hashBasket.size >0){
-        let basketArray = [];
-        hashBasket.forEach((basketItem) =>{
-            const tempProduct = basketItem;
-            tempProduct.quantity = basketItem.quantity;
-            basketArray.push(tempProduct);
-        });
-        localStorage.setItem("basket",JSON.stringify(basketArray));
-        localStorage.setItem("total",JSON.stringify(total));
+
+window.addEventListener("pagehide", () =>{
+    const checkoutButton= document.getElementById("b-checkout-btn");
+    if (checkoutButton!=null){
+        if (hashBasket.size >0){
+            let basketArray = [];
+            hashBasket.forEach((basketItem) =>{
+                const tempProduct = basketItem;
+                tempProduct.quantity = basketItem.quantity;
+                basketArray.push(tempProduct);
+            });
+            localStorage.setItem("basket",JSON.stringify(basketArray));
+            localStorage.setItem("total",JSON.stringify(total));
+        }
+        checkoutButton.onclick = function (){location.href = "../html/checkout.html";} 
     }
-     checkoutButton.onclick = function (){location.href = "../html/checkout.html";} 
-}
+});
    
 
