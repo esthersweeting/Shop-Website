@@ -8,7 +8,7 @@ let clickedSizeIndex= 0;
 
 let currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
 
-let productStatus = document.getElementById("p-status");
+
 let pStatusText = document.getElementById("p-status-text");
 
 const quantControl = document.getElementById("p-quantity-id");
@@ -26,7 +26,7 @@ sizes.forEach((size,index)=>{
     console.log(hashBasket.get(calcKey(currentProduct,index)));
     
 });
-
+let productStatus = document.getElementById("p-status");
 //Sets the thing to say in stock or out of stock
 function checkStatus(){
     if (currentProduct.stock[clickedSizeIndex]-orderedArray[clickedSizeIndex]<=0){
